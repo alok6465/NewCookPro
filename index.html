@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>CookPro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- AOS + Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- Preloader -->
+<div id="preloader">
+  <div class="loader">
+    <div class="pan"></div>
+    <div class="handle"></div>
+    <div class="bubble bubble1"></div>
+    <div class="bubble bubble2"></div>
+    <div class="bubble bubble3"></div>
+  </div>
+  <p class="loading-text">Cooking up CookPro...</p>
+</div>
+
+
+  
+    <!-- Navbar -->
+<header class="navbar">
+    <a href="#home" class="logo">🥗 CookPro</a>
+    <nav class="nav-links" id="navLinks">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="recipes.html" class="nav-link">Recipes</a>
+    <a href="#categories" class="nav-link">Categories</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</header>
+<div class="falling-foods"></div>
+
+
+    <!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-left" data-aos="fade-right">
+    <h5>Healthy Starts Here</h5>
+    <h1>Eat Fresh <br><span>Live Smart</span></h1>
+    <p>
+    Discover recipes made from real ingredients. Boost your health and enjoy cooking like never before.
+    </p>
+    <button class="cta-btn" onclick="location.href='recipes.html'" data-aos="zoom-in" data-aos-delay="200">
+  Explore Recipes
+</button>
+
+    </div>
+
+    <div class="hero-right">
+    <img src="assets/images/paneer.jpg" class="hero-img animate-on-load" alt="Fruits and Vegetables" />
+    </div>
+</section>  <!-- Hero Section Close -->
+
+<!-- About Us Section -->
+    <section class="about-us" id="about" data-aos="fade-up">
+    <div class="about-left">
+        
+    <div class="video-container">
+    <video autoplay muted loop playsinline>
+    <source src="assets/videos/About_Videos.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+    </video>
+</div>
+
+
+    </div>
+    <div class="about-right">
+    <h2>About <span>CookPro</span></h2>
+    <p>
+        <strong>CookPro: Smart Recipe</strong> is an AI-powered web platform designed to help you cook smart, fast, and healthy. 
+        Just enter the ingredients you have—whether it’s a full kitchen or just a few items—and CookPro will instantly suggest the tops recipes tailored to your inputs.
+    </p>
+    <p>
+        Each recipe comes with step-by-step instructions, cooking time, health benefits of ingredients, and YouTube tutorials. 
+        Missing ingredients? No worries—CookPro even gives you instant grocery delivery links so you can shop in minutes.
+    </p>
+    <p>
+        Unlike basic recipe apps, CookPro filters recipes based on your ingredients and health goals. 
+        You can save and download recipes, post reviews with images, and interact with the CookPro cooking community—all in one place.
+    </p>
+    <p>
+        <strong>Technologies Used:</strong><br>
+        HTML, CSS, JavaScript, AI-based logic/API, Local Storage, and optional tools like Tailwind, Firebase, or Cloudinary.
+    </p>
+    </div>
+</section> <!-- About Us Section  Close -->
+
+<!--categories section -->
+<section class="categories-section" id="categories">
+  <h2 class="categories-section-title" data-aos="fade-up">
+    🍽️ <span class="title-dark">Recipe</span> <span class="title-orange">Categories</span>
+  </h2>
+
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
+    Explore meals by category – quick, healthy & delicious!
+  </p>
+
+  <div class="carousel-wrapper">
+    <button class="scroll-btn left" onclick="scrollCategory('left')">❮</button>
+
+    <div class="category-carousel" id="categoryCarousel">
+
+      <a href="https://www.archanaskitchen.com/collection/indian-breakfast-recipes-in-20-minutes-for-busy-mornings" class="category-link" data-aos="zoom-in">
+        <div class="category-card">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/cat_Breakfast.mp4" type="video/mp4">
+          </video>
+          <h4>Breakfast</h4>
+        </div>
+      </a>
+
+      <a href="https://www.archanaskitchen.com/meal-course/lunch" class="category-link" data-aos="zoom-in">
+        <div class="category-card">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/cat_Lunch.mp4" type="video/mp4">
+          </video>
+          <h4>Lunch</h4>
+        </div>
+      </a>
+
+      <a href="https://www.archanaskitchen.com/meal-course/snack" class="category-link" data-aos="zoom-in">
+        <div class="category-card">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/cat_Snakes.mp4" type="video/mp4">
+          </video>
+          <h4>Snacks</h4>
+        </div>
+      </a>
+
+      <a href="https://www.archanaskitchen.com/meal-course/dinner" class="category-link" data-aos="zoom-in">
+        <div class="category-card">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/cat_Dinner.mp4" type="video/mp4">
+          </video>
+          <h4>Dinner</h4>
+        </div>
+      </a>
+
+      <a href="https://www.archanaskitchen.com/meal-course/dessert" class="category-link" data-aos="zoom-in">
+        <div class="category-card">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/cat_desert.mp4" type="video/mp4">
+          </video>
+          <h4>Dessert</h4>
+        </div>
+      </a>
+
+      <a href="https://www.archanaskitchen.com/category/recipes/drink-recipes" class="category-link" data-aos="zoom-in">
+        <div class="category-card">
+          <video autoplay loop muted playsinline>
+            <source src="assets/videos/cat_Drink.mp4" type="video/mp4">
+          </video>
+          <h4>Drinks</h4>
+        </div>
+      </a>
+
+    </div>
+
+    <button class="scroll-btn right" onclick="scrollCategory('right')">❯</button>
+  </div>
+</section>
+
+<!-- Popup Container when click on categories sections list  -->
+<div id="categoryPopup" class="popup-container">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <iframe id="categoryIframe" src="" frameborder="0"></iframe>
+  </div>
+</div>
+
+<!--categories section close -->
+
+  <!-- contact section -->
+<section id="contact" class="contact-section">
+  <h2 class="contact-title" data-aos="fade-left">
+    📞 <span class="title-dark">Get in</span> <span class="title-orange">Touch</span>
+  </h2>
+
+  <p class="contact-subtitle" data-aos="fade-left" data-aos-delay="200">
+    Feel free to reach out via any platform!
+  </p>
+
+  <div class="contact-content">
+    <div class="contact-info" data-aos="zoom-in-up">
+      <p><strong>📱 Mobile:</strong> <a href="tel:+919999999999">+91 99999 99999</a></p>
+      <p><strong>📧 Email:</strong> <a href="mailto:contact@cookpro.in">contact@cookpro.in</a></p>
+      <p><strong>🌐 Website:</strong> <a href="https://cookpro.in" target="_blank">www.cookpro.in</a></p>
+    </div>
+
+    <div class="social-icons" data-aos="zoom-in-up" data-aos-delay="200">
+      <a href="https://www.instagram.com/" target="_blank" class="icon instagram" title="Instagram">📸</a>
+      <a href="https://t.me/" target="_blank" class="icon telegram" title="Telegram">📨</a>
+      <a href="https://www.linkedin.com/" target="_blank" class="icon linkedin" title="LinkedIn">💼</a>
+      <a href="https://www.youtube.com/" target="_blank" class="icon youtube" title="YouTube">▶️</a>
+      <a href="https://wa.me/919999999999" target="_blank" class="icon whatsapp" title="WhatsApp">💬</a>
+      <a href="https://www.facebook.com/" target="_blank" class="icon facebook" title="Facebook">📘</a>
+      <a href="https://twitter.com/" target="_blank" class="icon twitter" title="Twitter">🐦</a>
+    </div>
+  </div>
+</section>
+<!-- Contact Section Close -->
+
+
+    <!-- Scroll Down Arrow -->
+    <div class="scroll-down" data-aos="fade-up">↓</div>
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+    AOS.init({ duration: 1000, once: false,  mirror: true });
+    </script>
+</body>
+</html>

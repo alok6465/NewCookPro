@@ -1,0 +1,452 @@
+/* File: assets/css/recipes.css */
+
+.recipe-search-section {
+  padding: 120px 20px 40px;
+  background: #fffef6;
+  text-align: center;
+}
+.recipe-search-section h1 {
+  font-size: 2.5rem;
+}
+.recipe-search-section .search-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.search-box input {
+  padding: 10px 15px;
+  width: 300px;
+  border: 2px solid #ff6347;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+}
+.search-box, .search-box * { position: relative; z-index: 3000; }
+.search-box input, .search-icon { z-index: 3001; }
+.search-icon {
+  padding: 10px 20px;
+  background: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+}
+
+/* Recipe Cards */
+.recipe-results-section .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 40px 20px;
+}
+.recipe-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+.recipe-card:hover {
+  transform: translateY(-5px);
+}
+.recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.recipe-card .content {
+  padding: 15px;
+}
+.recipe-card .title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.recipe-card .time-likes {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+}
+
+/* Modal */
+.recipe-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+.recipe-modal .modal-content {
+  background: #fff;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  height: 80%;
+  border-radius: 10px;
+  position: relative;
+  overflow-y: auto;
+}
+.recipe-modal .modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.recipe-modal .modal-content::-webkit-scrollbar-thumb {
+  background: #ff6347;
+  border-radius: 10px;
+}
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+.modal-buttons .btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+.btn.orange {
+  background: #ff6347;
+}
+.btn.green {
+  background: #28a745;
+}
+.recipe-modal h2 {
+  margin-top: 0;
+}
+.recipe-modal .ingredients {
+  margin-bottom: 20px;
+}
+.recipe-modal .steps {
+  white-space: pre-line;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.modal-description {
+  font-style: italic;
+  margin: 10px 0;
+  color: #444;
+}
+
+.modal-benefits {
+  padding-left: 20px;
+  margin-bottom: 20px;
+  color: #2e7d32;
+}
+.modal-benefits li::before {
+  content: "✔ ";
+  color: #28a745;
+  margin-right: 6px;
+}
+
+.modal-buttons button#shareBtn {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.modal-buttons button#shareBtn:hover {
+  background-color: #ff6b0f;
+}
+
+/* 🔗 Share Button Styles */
+.share-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#shareBtn {
+  background-color: #ff6347;
+  color: #fff;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#shareBtn:hover {
+  background-color: #e2543b;
+}
+
+/* Dropdown Menu */
+.share-options {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: #fff;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.share-options a {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.2s;
+}
+
+.share-options a:hover {
+  background-color: #f2f2f2;
+}
+
+/* Responsive for small screens */
+@media (max-width: 500px) {
+  .modal-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .share-options {
+    right: auto;
+    left: 0;
+    width: 100%;
+  }
+}
+
+
+/* Recipes Reviews- Comments  */
+#reviewSection {
+  margin-top: 20px;
+  padding: 10px;
+  background: #fffef6;
+  border-top: 1px solid #ccc;
+}
+
+#reviewsList {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.review-card {
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 8px;
+}
+
+.review-card img {
+  max-width: 100px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+#reviewForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#reviewForm input, #reviewForm textarea {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#reviewForm button {
+  background-color: #ff6347;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Top Today Comments */
+#topTodayList {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.top-comment {
+  background: #fff;
+  border: 1px solid #ffe9df;
+  padding: 8px 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  min-width: 120px;
+}
+.top-comment .name {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.top-comment .text {
+  font-size: 0.85rem;
+  color: #444;
+  margin-top: 4px;
+}
+
+/* Global Top Comments on recipes page */
+.top-comments-section {
+  padding: 20px 0 0;
+  background: #fffef6;
+}
+#globalTopCommentsList {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 12px 6px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.global-top-item {
+  flex: 0 0 320px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px;
+  border: 1px solid #ffe9df;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.hidden-top-comments { display: none; }
+
+/* Toggle pill */
+.toggle-pill {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-track {
+  width: 48px;
+  height: 26px;
+  background: linear-gradient(180deg,#ffd9cc,#ffb089);
+  border-radius: 999px;
+  padding: 3px;
+  display:flex;
+  align-items:center;
+}
+
+.toggle-thumb {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transform: translateX(0);
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1);
+}
+.toggle-pill.active .toggle-thumb { transform: translateX(22px); }
+.toggle-label { font-weight:600; color:#333; font-size:0.95rem; }
+
+/* Toasts */
+#toastContainer {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 1400;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+#toastContainer .toast {
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  margin-top: 8px;
+  min-width: 220px;
+  max-width: 340px;
+  text-align: left;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+#toastContainer .toast.success { background: #28a745; }
+#toastContainer .toast.error { background: #dc3545; }
+
+
+.review-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.review-card .meta {
+  flex: 1;
+}
+.review-card .controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.like-btn {
+  background: #fff;
+  border: 1px solid #ffb6a7;
+  color: #ff6347;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.small-img {
+  max-width: 80px;
+  border-radius: 6px;
+}
+
+@media (max-width: 500px) {
+  #reviewForm { gap: 6px; }
+  .top-comment { min-width: 100px; }
+  .review-card { flex-direction: column; }
+  .small-img { max-width: 100%; }
+}
+
+/* See more button */
+.see-more-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+.see-more-btn {
+  background: transparent;
+  border: 2px solid #ff6347;
+  color: #ff6347;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.see-more-btn:hover { background: #ff634733; }
+
+/* Placeholder when no search performed */
+.search-placeholder {
+  color: #666;
+  font-size: 1.05rem;
+  text-align: center;
+  padding: 30px 0;
+}
+
+
+
+/*--------------------------------*/

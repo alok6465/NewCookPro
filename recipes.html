@@ -1,0 +1,184 @@
+<!-- File: recipes.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CookPro – Recipes</title>
+
+  <!-- AOS + Styles -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/recipes.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="0">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <a href="index.html" class="logo">🍲 CookPro</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="recipes.html" class="active">Recipes</a>
+      <a href="index.html#categories">Categories</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </header>
+
+  <!-- 🔍 Search Section -->
+  <section class="recipe-search-section">
+    <div class="container">
+      <h1 data-aos="fade-up">Explore <span class="orange-text">Tasty Recipes</span></h1>
+      <p data-aos="fade-up" data-aos-delay="100">Search by ingredients or recipe name.</p>
+      <div class="search-wrapper" data-aos="fade-up" data-aos-delay="200">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="e.g., aloo, paneer, rice..."
+          />
+          <button id="searchBtn" class="search-icon" title="Search">🔍</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📦 Recipe Results Section -->
+  <section class="recipe-results-section">
+    <div class="container" id="recipeResults"></div>
+  </section>
+
+  <!-- Top Comments (global) - moved below results -->
+  <section class="top-comments-section">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <h2 style="margin:0;">Top Comments Today</h2>
+        <!-- Pill toggle -->
+        <div class="toggle-pill" id="toggleTopCommentsBtn" title="Hide/Show Top Comments">
+          <div class="toggle-track">
+            <div class="toggle-thumb"></div>
+          </div>
+          <span class="toggle-label">Hide</span>
+        </div>
+      </div>
+      <div id="globalTopComments" style="margin-top:12px;">
+        <div id="globalTopCommentsList"></div>
+      </div>
+    </div>
+  </section>
+
+
+  
+  <!-- 📑 Recipe Modal -->
+  <div id="recipeModal" class="recipe-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">×</span>
+      <h2 id="modalTitle"></h2>
+      <p class="modal-description" id="modalDescription"></p>
+      
+      <p><strong>Ingredients:</strong></p>
+      <ul id="modalIngredients"></ul>
+
+      <p><strong>Benefits:</strong></p>
+      <ul id="modalBenefits" class="modal-benefits"></ul>
+
+      <p><strong>Steps:</strong></p>
+      <ol id="modalSteps"></ol>
+
+      <p><strong>Cooking Time:</strong> <span id="modalTime"></span></p>
+      
+      <iframe id="modalYoutube" width="100%" height="200" frameborder="0" allowfullscreen></iframe>
+      
+      <div class="modal-buttons">
+        <a id="downloadBtn" class="btn orange">Download Recipe</a>
+        <a id="groceryBtn" class="btn green" target="_blank">Get 10-min Grocery</a>
+
+        <!-- Share Dropdown -->
+        <div class="share-dropdown">
+          <button id="shareBtn">🔗 Share</button>
+          <div id="shareOptions" class="share-options">
+            <a href="#" id="copyLink">📎 Copy Link</a>
+            <a href="#" id="whatsappShare" target="_blank">💬 WhatsApp</a>
+            <a href="#" id="emailShare" target="_blank">📧 Email</a>
+            <a href="#" id="facebookShare" target="_blank">📘 Facebook</a>
+            <a href="#" id="twitterShare" target="_blank">🐦 Twitter</a>
+            <a href="#" id="telegramShare" target="_blank">💻 Telegram</a>
+          </div>
+        </div>
+      </div>
+      <!-- Comments Section -->
+      <section id="reviewSection" aria-labelledby="reviewsHeading">
+        <h3 id="reviewsHeading">Comments</h3>
+
+        <!-- (Today Top Comments moved to main page) -->
+
+        <!-- Full reviews list -->
+        <div id="reviewsList" aria-live="polite"></div>
+
+        <!-- New review form -->
+        <form id="reviewForm" onsubmit="return false;" aria-label="Add a comment">
+          <input type="text" id="reviewName" placeholder="Your name" required />
+          <textarea id="reviewText" rows="3" placeholder="Write your comment..." required></textarea>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <input type="file" id="reviewImage" accept="image/*" style="flex:0 0 auto;" />
+            <button id="submitReview" type="button" class="btn orange">Post Comment</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+  <script src="assets/js/comments.js"></script>
+  <script src="assets/js/recipes.js"></script>
+  <!-- Toast container for success messages (positioned by CSS) -->
+  <div id="toastContainer" aria-live="polite"></div>
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
+  <script>
+    // Defensive fixes: if a preloader or falling-foods overlay is present, hide it to avoid blocking clicks
+    document.addEventListener('DOMContentLoaded', () => {
+      try{
+        const pre = document.getElementById('preloader');
+        if (pre) pre.classList.add('hidden');
+      }catch(e){}
+
+      // ensure recipe modal sits above everything and accepts pointer events
+      const modal = document.getElementById('recipeModal');
+      if (modal) {
+        modal.style.zIndex = 99999;
+        modal.style.pointerEvents = 'auto';
+      }
+
+      // ensure falling foods doesn't block interactions
+      const falling = document.querySelector('.falling-foods');
+      if (falling) {
+        falling.style.pointerEvents = 'none';
+        falling.style.zIndex = 0;
+      }
+
+      // Hide any generic popup-container or high-z-index overlays on this page so search/modal remain interactive.
+      document.querySelectorAll('.popup-container').forEach(el => {
+        try{
+          el.style.pointerEvents = 'none';
+          el.style.display = 'none';
+          el.style.zIndex = 0;
+        }catch(e){}
+      });
+
+      // Ensure search box is topmost for interactions
+      const searchBox = document.querySelector('.search-box');
+      if (searchBox) { searchBox.style.zIndex = 4000; searchBox.style.position = 'relative'; }
+    });
+  </script>
+  
+</body>
+</html>
